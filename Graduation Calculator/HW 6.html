@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HW 6</title>
+
+    <style "text/css">
+      body {background-color: rgb(49, 81, 176); width: 630px}
+      div {background-color: white; border=1; padding:10px}
+      h1 {text-decoration: underline; text-align: center}
+      h2 {color: white; padding: 100px; text-align: center}
+      h3 {background-color: yellow; border: 1; text-align: center}
+      img {border: 1}
+    </style>
+
+    <script type="text/javascript">
+
+    function newImg() {
+
+      var PamplinPics = new Array(7);
+      PamplinPics = ["pamplin.jpg", "Mark.jpg", "Mang.jpg", "HTM.jpg", "Finance.jpg", "BIT.jpg", "ACIS.jpg"]
+      var PamplinNames = new Array(7);
+      PamplinNames = ["Pamplin", "Marketing", "Managment", "HTM", "Finance", "BIT", "Accounting"]
+
+      var firstImg = document.images[0].src;
+      console.log(firstImg);
+      var indexPlus1 = firstImg.lastIndexOf("/") + 1;
+      var fileName = firstImg.substring(indexPlus1, firstImg.length);
+      console.log(fileName);
+      var PicIndex = PamplinPics.indexOf(fileName);
+      console.log(PicIndex);
+      var t = document.getElementById("DeptName");
+      console.log(PamplinPics.length);
+      var currentT = t.innerHTML;
+      var titleIndex = PamplinNames.indexOf(currentT);
+
+      if(PicIndex<PamplinPics.length-1) {
+        picture.src = PamplinPics[PicIndex + 1];
+        PicIndex++;
+        console.log(PicIndex);
+        t.innerHTML = PamplinNames[titleIndex + 1];
+        console.log(firstImg);
+      }
+      else {
+        firstImg.innerHTML = PamplinPics[0];
+        DeptName.innerHTML = PamplinNames[0];
+      }
+    }
+
+    function imageOver()  {document.images[0].src="VTpamplinLogo.jpg";}
+   function imageOut() {document.images[0].src="pamplin.jpg";}
+   function init(){
+     document.images[0].addEventListener("mouseover", imageOver, false);
+     document.images[0].addEventListener("mouseout", imageOut, false);
+   }
+   window.addEventListener("load", init, false);
+
+      //mouse over picture change
+/*      window.addEventListener("load", setInterval(newTitle, 1000), false);
+      function imageOut() {document.images[0].src = "pamplin.jpg";}
+      function imageOut() {document.images[0].src = "Mark.jpg";}
+      function imageOut() {document.images[0].src = "Mang.jpg";}
+      function imageOut() {document.images[0].src = "HTM.jpg";}
+      function imageOut() {document.images[0].src = "Finance.jpg";}
+      function imageOut() {document.images[0].src = "BIT.jpg";}
+      function imageOut() {document.images[0].src = "ACIS.jpg";}
+
+*/
+
+      function calcGrad() {
+        var date = new Date();
+        var term = (window.prompt("What is your graduation term (spring or fall)?:"));
+        var gradYr = (window.prompt("What year will you graduate?:"));
+var gradNum = 0;
+        if (term=="spring") {
+          gradNum = 4;
+        }
+        if (term=="fall") {
+          gradNum = 11;
+        } else {
+          gradNum = 4;
+        }
+        var day = date.getDate();
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var yearsLeft = gradYr - year;
+        var gradDay = document.getElementById("grad");
+        var monthsRM = Math.abs(gradNum - month);
+        gradDay.innerHTML = yearsLeft + " years and " + monthsRM + " months left to graduate!";
+      }
+
+      window.addEventListener("load", setInterval(newImg, 3000), false);
+
+    </script>
+
+  </head>
+
+  <div>
+      <h1>Pamplin Departments</h1>
+    </div>
+<br>
+      <img id="picture" src="pamplin.jpg" alt="pamplin">
+
+      <h2 id="DeptName">Pamplin</h2>
+<br>
+      <div class="">
+        <h1>Countdown to Graduation!</h1>
+        <h3 id="grad" onclick="calcGrad()">time left?</h3>
+      </div>
+
+  <body>
+
+  </body>
+</html>
